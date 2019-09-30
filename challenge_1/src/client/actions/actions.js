@@ -5,20 +5,14 @@ function setSearchResultAction(searchResultObj = []) {
   }
 }
 
-// function goNextPage() {
-//   return {
-//     type: 'GO_TO_NEXT_PAGE',
-//   }
-// }
-
-// function goPrevPage() {
-//   return {
-//     type: 'GO_TO_PREV_PAGE',
-//   }
-// }
+function setSearchQueryAction(query = '') {
+  return {
+    type: 'SET_SEARCH_QUERY',
+    query
+  }
+}
 
 export {
   setSearchResultAction,
-  // goNextPage,
-  // goPrevPage,
+  setSearchQueryAction,
 }

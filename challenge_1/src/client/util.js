@@ -1,4 +1,6 @@
-async function fetchResults (url, query, page=1, limitPerPage=10) {
+const url = `http://www.localhost:4000`;
+
+async function fetchResults (query, page=1, limitPerPage=10) {
   let response = await fetch(`${url}/events?q=${query}&_page=${page}&_limit=${limitPerPage}`, {
     method: 'GET',
     headers: {
