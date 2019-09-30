@@ -1,0 +1,38 @@
+{
+  "name": "historicaleventsfinder",
+  "version": "1.0.0",
+  "description": "Searches and Browses Historical Event Information based on provided JSON data",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start --watch",
+    "test": "test"
+  },
+  "author": "Han Yan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-redux": "^7.1.1",
+    "react-scripts": "^3.1.2",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
