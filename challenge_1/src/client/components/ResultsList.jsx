@@ -13,8 +13,9 @@ function ResultsList({searchResult}) {
   return (
     <ol>
       <p>Search Results:</p>
-      {searchResult.map((entry) => {
-        return <EachSearchResult date={entry.date}
+      {searchResult.map((entry, index) => {
+        return <EachSearchResult key={`${index}-date-${entry.date}`}
+          date={entry.date}
           category2={entry.category2}
           description={entry.description} />
       })}

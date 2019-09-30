@@ -5,6 +5,7 @@ import rootReducer from './reducers/rootReducer';
 
 const initialData = {
   searchResult: [],
+  pageIndex: 0,
 }
 
 export default function configureStore() {

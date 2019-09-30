@@ -7,6 +7,15 @@ function searchResult (searchResultObj = [], action) {
   }
 }
 
+// function pageIndex (null, action) {
+//   switch (action.type) {
+//     case 'GO_TO_NEXT_PAGE':
+//       return ...........;
+//     case 'GO_TO_PREV_PAGE':
+//       return ...........; 
+//   }
+// }
+
 export {
   searchResult,
 }
