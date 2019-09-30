@@ -16,7 +16,17 @@ function searchQuery (query = '', action) {
   }
 }
 
+function numPaginatedPages (numPages = 1, action) {
+  switch (action.type) {
+    case 'SET_NUM_PAGINATED_PAGES':
+      return action.numPages;
+    default:
+      return numPages;
+  }
+}
+
 export {
   searchResult,
   searchQuery,
+  numPaginatedPages,
 }

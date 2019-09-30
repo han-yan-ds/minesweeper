@@ -6,6 +6,7 @@ import rootReducer from './reducers/rootReducer';
 const initialData = {
   searchResult: [],
   searchQuery: '',
+  numPaginatedPages: 1,
 }
 
 export default function configureStore() {

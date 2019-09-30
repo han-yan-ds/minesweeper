@@ -7,8 +7,8 @@ import {fetchResults} from './util';
 import ReactPaginate from 'react-paginate';
 
 function mapStateToProps (state) {
-  const {searchQuery} = state;
-  return {searchQuery};
+  const {searchQuery, numPaginatedPages} = state;
+  return {searchQuery, numPaginatedPages};
 }
 
 function mapDispatchToProps (dispatch) {
@@ -21,7 +21,7 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-function App ({searchQuery, changePage}) {
+function App ({searchQuery, numPaginatedPages, changePage}) {
   return (
     <div>
       <Search/>
@@ -30,7 +30,7 @@ function App ({searchQuery, changePage}) {
         previousLabel={'prev'}
         nextLabel={'next'}
         breakLabel={'...'}
-        pageCount={3}
+        pageCount={numPaginatedPages}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
         onPageChange={(data) => changePage(data, searchQuery)}

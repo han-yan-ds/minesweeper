@@ -12,7 +12,15 @@ function setSearchQueryAction(query = '') {
   }
 }
 
+function setNumPaginatedPagesAction(numPages = 1) {
+  return {
+    type: 'SET_NUM_PAGINATED_PAGES',
+    numPages,
+  }
+}
+
 export {
   setSearchResultAction,
   setSearchQueryAction,
+  setNumPaginatedPagesAction,
 }
