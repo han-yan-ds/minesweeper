@@ -53,8 +53,10 @@ function setRedisCache(dataBpi) {
   })
 }
 
-exports.getBTCchart = function (req, res) {
-  const [startDateStr, endDateStr] = [req.query.start, req.query.end];
+exports.getCloseChart = function (req, res) {
+  const [startDateStr, endDateStr] = [
+    req.query.start || moment().subtract(10, 'd').format('YYYY-MM-DD'), 
+    req.query.end || moment().format('YYYY-MM-DD')];
   redisClient.get('cachedRange', async (err, result) => {
     if (isCacheDateEnough(result, startDateStr, endDateStr)) {
       getRedisCache(startDateStr, endDateStr, (allDates) => {res.json(allDates)});
