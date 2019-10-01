@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 function ResultsList({searchResult}) {
   return (
     <ol>
-      <p>Search Results:</p>
+      <p>SEARCH RESULTS:</p>
       {searchResult.map((entry, index) => {
         return <EachSearchResult key={`${index}-date-${entry.date}`}
           date={entry.date}
