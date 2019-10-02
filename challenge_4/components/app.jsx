@@ -2,7 +2,7 @@ import Board from './Board/Board.jsx';
 
 function App () {
   return (
-    <div>
+    <div id="container">
       <Board/>
     </div>
   );

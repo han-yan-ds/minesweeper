@@ -47,6 +47,12 @@ function populateMarkers (minedBoardArr) {
   return minedBoardArr;
 }
 
+function uncoverBoard (board, row, col) {
+  // given a board, row#, and, col#, uncovers the rest of the board
+  // to uncover: set board[x][y].isCovered = true
+  
+}
+
 export {
   populateMines,
   populateMarkers

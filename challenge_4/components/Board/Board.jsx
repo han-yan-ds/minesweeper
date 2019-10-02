@@ -39,6 +39,8 @@ class Board extends Component {
             return <div key={`${rowIndex}`}>{boardRow.map((cell, colIndex) => {
               return <Cell
                 key={`${rowIndex} ${colIndex}`}
+                rowIndex={rowIndex}
+                colIndex={colIndex}
                 isCovered={cell.isCovered}
                 value={cell.value}
               />
