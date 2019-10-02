@@ -24,6 +24,8 @@ function Board ({boardArr}) {
           return <div key={`${rowIndex}`}>{boardRow.map((cell, colIndex) => {
             return <Cell
               key={`${rowIndex} ${colIndex}`}
+              isCovered={cell.isCovered}
+              value={cell.value}
             />
           })}</div>
       })}

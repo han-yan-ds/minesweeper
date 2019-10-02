@@ -8,10 +8,10 @@
 // isCovered (true or false)
 //    if covered, it's clickable too
 
-function Cell ({}) {
+function Cell ({isCovered, value}) {
   return (
     <button>
-      0
+      {value}
     </button>
   )
 }

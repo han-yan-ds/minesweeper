@@ -4,16 +4,20 @@ function boardInitializer (width, height, numMines) {
   // limit num mines to 15% of total board size
   numMines = Math.min(numMines, width * height);
   // create array of arrays to represent board
-  let board = [];
+  let board = new Array(height);
   for (let row = 0; row < height; row++) {
-    board.push(new Array(width).fill(0))
+    board[row] = new Array(width);
+    for (let col = 0; col < width; col++) {
+      board[row][col] = {
+        isCovered: true,
+        value: 0
+      }
+    }
   }
   populateMines(board, numMines);
   populateMarkers(board);
   console.log(board);
   return board;
 }
-
-
 
 export default boardInitializer;

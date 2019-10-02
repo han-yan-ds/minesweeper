@@ -5,8 +5,8 @@ function populateMines (boardArr, numMines) {
   while (numMines > 0) {
     let randX = Math.floor(Math.random() * boardArr[0].length);
     let randY = Math.floor(Math.random() * boardArr.length);
-    if (boardArr[randY][randX] === 0) {
-      boardArr[randY][randX] = MINEVALUE;
+    if (boardArr[randY][randX].value === 0) {
+      boardArr[randY][randX].value = MINEVALUE;
       numMines--;
     }
   }
@@ -17,7 +17,7 @@ function countAdjacent (board, xCoor, yCoor) {
   // counts number of adjacent cells with mines
   function handleOutOfBounds (board, x, y) {
     try {
-      return board[x][y];
+      return board[x][y].value;
     } catch(err) {
       return 0;
     }
@@ -39,8 +39,8 @@ function populateMarkers (minedBoardArr) {
   // populates unmined cells that are adjacent to mine(s) with number of adjacent mines
   minedBoardArr.forEach((row, rowIndex) => {
     row.forEach((cell, colIndex) => {
-      if (minedBoardArr[rowIndex][colIndex] !== MINEVALUE) {
-        minedBoardArr[rowIndex][colIndex] = countAdjacent(minedBoardArr, rowIndex, colIndex);
+      if (minedBoardArr[rowIndex][colIndex].value !== MINEVALUE) {
+        minedBoardArr[rowIndex][colIndex].value = countAdjacent(minedBoardArr, rowIndex, colIndex);
       }
     })
   })
