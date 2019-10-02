@@ -1,7 +1,11 @@
-const Index = () => (
-  <div>
-    <p>Hello Next.js</p>
-  </div>
-);
+import App from '../components/app.jsx';
+
+function Index () {
+  return (
+    <div>
+      <App/>
+    </div>
+  )
+};
 
 export default Index;
