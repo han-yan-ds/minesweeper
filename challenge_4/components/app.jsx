@@ -1,9 +1,14 @@
+import {connect} from 'react-redux';
 
+function mapStateToProps(state) {
+  const {testKey} = state;
+  return {testKey};
+}
 
-function App () {
+function App ({testKey}) {
   return (
-    <p>I didn't even need to import React!</p>
+    <p>{testKey}</p>
   );
 }
 
-export default App;
+export default connect(mapStateToProps, null)(App);
