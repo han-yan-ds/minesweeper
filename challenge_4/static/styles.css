@@ -1,0 +1,17 @@
+button {
+  height: 30px;
+  width: 30px;
+  padding: 0;
+}
+
+.val-1 {
+  color: green;
+}
+
+.val-2 {
+  color: orange;
+}
+
+.val-3 {
+  color: blue;
+}

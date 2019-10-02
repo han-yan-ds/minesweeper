@@ -8,7 +8,7 @@
 
 // Board can have state:
 //
-
+import {Component} from 'react';
 import {connect} from 'react-redux';
 import Cell from './Cell.jsx';
 
@@ -17,20 +17,40 @@ function mapStateToProps(state) {
   return {boardArr}
 }
 
-function Board ({boardArr}) {
-  return (
-    <div id="board">
-      {boardArr.map((boardRow, rowIndex) => {
-        return <div key={`${rowIndex}`}>{boardRow.map((cell, colIndex) => {
-          return <Cell
-            key={`${rowIndex} ${colIndex}`}
-            isCovered={cell.isCovered}
-            value={cell.value}
-          />
-        })}</div>
-      })}
-    </div>
-  );
+class Board extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      boardDidMount: false,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      boardDidMount: true,
+    })
+  }
+
+  render() {
+    if (this.state.boardDidMount) {
+      return (
+        <div id="board">
+          {this.props.boardArr.map((boardRow, rowIndex) => {
+            return <div key={`${rowIndex}`}>{boardRow.map((cell, colIndex) => {
+              return <Cell
+                key={`${rowIndex} ${colIndex}`}
+                isCovered={cell.isCovered}
+                value={cell.value}
+              />
+            })}</div>
+          })}
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+  
 }
 
 export default connect(mapStateToProps, null)(Board);
