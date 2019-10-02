@@ -1,14 +1,12 @@
-import {connect} from 'react-redux';
+import Board from './Board/Board.jsx';
 
-function mapStateToProps(state) {
-  const {testKey} = state;
-  return {testKey};
-}
 
 function App ({testKey}) {
   return (
-    <p>{testKey}</p>
+    <div>
+      <Board/>
+    </div>
   );
 }
 
-export default connect(mapStateToProps, null)(App);
+export default App;

@@ -2,11 +2,18 @@
 // Value: 
 //   Empty (value = 0)
 //   Numbered (value = 1 - 8)
-//   Mine (value = -1)
+//   Mine (value = 9)
 
 // Cell can have the following state:
-// Covered (true or false)
+// isCovered (true or false)
+//    if covered, it's clickable too
 
-function Cell () {
-
+function Cell ({}) {
+  return (
+    <button>
+      0
+    </button>
+  )
 }
+
+export default Cell;

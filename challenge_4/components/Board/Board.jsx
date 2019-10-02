@@ -9,3 +9,26 @@
 // Board can have state:
 //
 
+import {connect} from 'react-redux';
+import Cell from './Cell.jsx';
+
+function mapStateToProps(state) {
+  const {boardArr} = state;
+  return {boardArr}
+}
+
+function Board ({boardArr}) {
+  return (
+    <div id="board">
+      {boardArr.map((boardRow, rowIndex) => {
+          return <div key={`${rowIndex}`}>{boardRow.map((cell, colIndex) => {
+            return <Cell
+              key={`${rowIndex} ${colIndex}`}
+            />
+          })}</div>
+      })}
+    </div>
+  );
+}
+
+export default connect(mapStateToProps, null)(Board);
