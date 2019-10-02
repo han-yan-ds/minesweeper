@@ -4,8 +4,10 @@ import rootReducer from './reducers/rootReducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import boardInitializer from '../util/boardInitializer';
 
+let myBoard = boardInitializer(10, 10, 10);
+
 const initialData = {
-  boardArr: boardInitializer(10, 10, 10),
+  boardArr: myBoard,
 };
 
 export default function configureStore () {

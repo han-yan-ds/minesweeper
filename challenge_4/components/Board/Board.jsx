@@ -21,13 +21,13 @@ function Board ({boardArr}) {
   return (
     <div id="board">
       {boardArr.map((boardRow, rowIndex) => {
-          return <div key={`${rowIndex}`}>{boardRow.map((cell, colIndex) => {
-            return <Cell
-              key={`${rowIndex} ${colIndex}`}
-              isCovered={cell.isCovered}
-              value={cell.value}
-            />
-          })}</div>
+        return <div key={`${rowIndex}`}>{boardRow.map((cell, colIndex) => {
+          return <Cell
+            key={`${rowIndex} ${colIndex}`}
+            isCovered={cell.isCovered}
+            value={cell.value}
+          />
+        })}</div>
       })}
     </div>
   );

@@ -9,9 +9,13 @@
 //    if covered, it's clickable too
 
 function Cell ({isCovered, value}) {
+  let displayedValue = (value > 0 && value < 9) ? value : ((value === 0) ? '' : 'X');
+  let isCoveredClass = (isCovered) ? 'covered' : 'exposed';
   return (
-    <button>
-      {value}
+    <button 
+      className={`${isCoveredClass} val-${displayedValue}`}
+    >
+      &nbsp;{displayedValue}&nbsp;
     </button>
   )
 }

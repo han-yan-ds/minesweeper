@@ -16,7 +16,6 @@ function boardInitializer (width, height, numMines) {
   }
   populateMines(board, numMines);
   populateMarkers(board);
-  console.log(board);
   return board;
 }
 

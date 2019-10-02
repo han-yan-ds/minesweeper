@@ -1,7 +1,6 @@
 import Board from './Board/Board.jsx';
 
-
-function App ({testKey}) {
+function App () {
   return (
     <div>
       <Board/>

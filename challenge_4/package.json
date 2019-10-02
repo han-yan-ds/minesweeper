@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "next": "^9.0.7",
+    "next-sass": "^1.0.3",
+    "node-sass": "^4.12.0",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-redux": "^7.1.1",
