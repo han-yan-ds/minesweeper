@@ -60,12 +60,10 @@ exports.getCloseChart = function (req, res) {
   redisClient.get('cachedRange', async (err, result) => {
     if (isCacheDateEnough(result, startDateStr, endDateStr)) {
       getRedisCache(startDateStr, endDateStr, (allDates) => {res.json(allDates)});
-      console.log('Getting from Cache');
     } else {
       const { data } = await axios.get(`https://api.coindesk.com/v1/bpi/historical/close.json?start=${startDateStr}&end=${endDateStr}`);
       res.send(data.bpi);
       setRedisCache(data.bpi);
-      console.log('Getting from API');
     }
   });
 }
