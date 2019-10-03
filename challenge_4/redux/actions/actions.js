@@ -2,20 +2,20 @@
 
 import {uncoverBoard} from '../../util/boardUtilities';
 
-function uncoverCellAction(board, row, col) {
+function uncoverCellAction(board, row, col, winCb, loseCb) {
   return {
     type: 'UNCOVER_CELL',
-    board: uncoverBoard(board, row, col),
+    board: uncoverBoard(board, row, col, winCb, loseCb),
   }
 }
 
-function winGame() {
+function winGameAction() {
   return {
     type: 'WIN_GAME',
   }
 }
 
-function loseGame() {
+function loseGameAction() {
   return {
     type: 'LOSE_GAME',
   }
@@ -23,6 +23,6 @@ function loseGame() {
 
 export {
   uncoverCellAction,
-  winGame,
-  loseGame,
+  winGameAction,
+  loseGameAction,
 }

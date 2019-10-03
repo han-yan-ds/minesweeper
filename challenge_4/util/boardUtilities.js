@@ -14,17 +14,17 @@ function cloneBoard(board) {
   return newBoard;
 }
 
-function populateMines (boardArr, numMines) {
+function populateMines (board, numMines) {
   // populate an empty board with mines
   while (numMines > 0) {
-    let randX = Math.floor(Math.random() * boardArr[0].length);
-    let randY = Math.floor(Math.random() * boardArr.length);
-    if (boardArr[randY][randX].value === 0) {
-      boardArr[randY][randX].value = MINEVALUE;
+    let randX = Math.floor(Math.random() * board[0].length);
+    let randY = Math.floor(Math.random() * board.length);
+    if (board[randY][randX].value === 0) {
+      board[randY][randX].value = MINEVALUE;
       numMines--;
     }
   }
-  return boardArr;
+  return board;
 }
 
 function countAdjacentMines (board, xCoor, yCoor) {
@@ -49,19 +49,31 @@ function countAdjacentMines (board, xCoor, yCoor) {
   return adjacentCells.filter((item) => (item === MINEVALUE)).length;
 }
 
-function populateMarkers (minedBoardArr) {
+function populateMarkers (minedBoard) {
   // populates unmined cells that are adjacent to mine(s) with number of adjacent mines
-  minedBoardArr.forEach((row, rowIndex) => {
+  minedBoard.forEach((row, rowIndex) => {
     row.forEach((cell, colIndex) => {
-      if (minedBoardArr[rowIndex][colIndex].value !== MINEVALUE) {
-        minedBoardArr[rowIndex][colIndex].value = countAdjacentMines(minedBoardArr, rowIndex, colIndex);
+      if (minedBoard[rowIndex][colIndex].value !== MINEVALUE) {
+        minedBoard[rowIndex][colIndex].value = countAdjacentMines(minedBoard, rowIndex, colIndex);
       }
     })
   })
-  return minedBoardArr;
+  return minedBoard;
 }
 
-function uncoverBoard (board, row, col, doCloneBoard = true) {
+function countRemainingSafe (playedBoard) {
+  let counter = 0;
+  playedBoard.forEach((row) => {
+    row.forEach((cell) => {
+      if (cell.isCovered && cell.value !== MINEVALUE) {
+        counter++;
+      }
+    })
+  });
+  return counter;
+}
+
+function uncoverBoard (board, row, col, winCb, loseCb, recursiveMode = false) {
   // given a board, row#, and, col#, uncovers the rest of the board
   // to uncover: set board[x][y].isCovered = false
   function uncoverCell(r, c) {
@@ -72,7 +84,7 @@ function uncoverBoard (board, row, col, doCloneBoard = true) {
     return board;
   } else {
     // otherwise, clone board
-    if (doCloneBoard) {
+    if (!recursiveMode) {
       board = cloneBoard(board);
     }
     // 1) if the selected cell is from 1-8... uncover just this cell
@@ -88,13 +100,13 @@ function uncoverBoard (board, row, col, doCloneBoard = true) {
           }
         })
       })
-      // SET STATE TO LOSE THE GAME
+      loseCb();
     }
     // 3) if the selected cell is a 0 (empty)...
     else {
       function uncoverNeighbor (r, c) {
         try {
-          uncoverBoard(board, r, c, false); // run uncoverBoard recursively
+          uncoverBoard(board, r, c, winCb, loseCb, true); // run uncoverBoard recursively
         } catch (err) {}
       }
       // a) uncover this cell
@@ -109,6 +121,10 @@ function uncoverBoard (board, row, col, doCloneBoard = true) {
       uncoverNeighbor(row+1, col+1);
       uncoverNeighbor(row+1, col);
       uncoverNeighbor(row+1, col-1);
+    }
+    // finally, check if the game is won:
+    if (countRemainingSafe(board) === 0 && !recursiveMode) {
+      winCb();
     }
     return board;
   }
