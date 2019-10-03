@@ -7,8 +7,10 @@ function Index () {
   return (
     <div>
       <Head>
-        <title>My styled page</title>
+        <title>Minesweeper</title>
+        <script src="https://kit.fontawesome.com/661f7c70a6.js" crossorigin="anonymous"></script>
         <link href="/static/styles.css" rel="stylesheet" />
+        <link href="/node_modules/@fortawesome/fontawesome-free/css/all.css" rel="stylesheet" />
       </Head>
       <Provider store={configureStore()}>
         <App/>

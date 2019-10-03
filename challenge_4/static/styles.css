@@ -4,6 +4,11 @@
   text-align: center;
 }
 
+#emoji {
+  color: black;
+  height: 100px;
+}
+
 button {
   height: 30px;
   width: 30px;
