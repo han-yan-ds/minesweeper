@@ -8,16 +8,13 @@
 // isCovered (true or false)
 //    if covered, it's clickable too
 import {connect} from 'react-redux';
-import {
-  uncoverCellAction, 
-  winGameAction, 
-  loseGameAction
-} from '../../redux/actions/actions';
+import {uncoverCellAction, winGameAction, loseGameAction} from '../../redux/actions/actions';
 
 function mapStateToProps(state) {
-  const {boardArr} = state;
+  const {boardArr, gameState} = state;
   return {
     boardArr,
+    gameState
   }
 }
 
@@ -31,21 +28,23 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-function Cell ({isCovered, value, rowIndex, colIndex, boardArr, 
+function Cell ({isCovered, value, rowIndex, colIndex, 
+  boardArr, gameState, 
   uncoverCell, winGame, loseGame}) {
   let cellValue = (value > 0 && value < 9) ? value : ((value === 0) ? '' : 'X');
   let displayedValue = (isCovered) ? '' : cellValue;
-  let isCoveredClass = (isCovered) ? 'covered' : 'exposed';
+  let isCoveredClass = (isCovered) ? 'covered' : (value === 9) ? 'exposed-mine' : 'exposed-safe';
+  let disabledClass = (gameState === 0) ? '' : 'disabled-button';
   return (
     <button 
-      className={`${isCoveredClass} val-${cellValue}`}
+      className={`${isCoveredClass} val-${cellValue} ${disabledClass}`}
       onClick={(e) => {
         e.preventDefault();
         uncoverCell(boardArr, rowIndex, colIndex, winGame, loseGame);
       }}
     >
-      {/* &nbsp;{displayedValue}&nbsp; */}
-      &nbsp;{cellValue}&nbsp;
+      &nbsp;{displayedValue}&nbsp;
+      {/* &nbsp;{cellValue}&nbsp; */}
     </button>
   )
 }

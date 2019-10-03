@@ -16,8 +16,17 @@ button {
   font-weight: bolder;
 }
 
-.exposed{
+.covered {
+  background-color: gray;
+}
+
+.exposed-mine {
   background-color: red;
+}
+
+.disabled-button {
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .val-1 {
