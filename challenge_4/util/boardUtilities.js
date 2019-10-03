@@ -49,8 +49,20 @@ function populateMarkers (minedBoardArr) {
 
 function uncoverBoard (board, row, col) {
   // given a board, row#, and, col#, uncovers the rest of the board
-  // to uncover: set board[x][y].isCovered = true
-  
+  // to uncover: set board[x][y].isCovered = false
+
+  // 0) if the selected cell is already uncovered, RETURN NULL (undefined??)
+  // otherwise, create new board (COPY BOARD... set to newBoard) <--- not sure if this is required
+  // 1) if the selected cell is from 1-8... uncover just this cell
+  // 2) if the selected cell is a 9 (mine)... uncover all mines and lose the game
+  // 3) if the selected cell is a 0 (empty)...
+    // a) uncover this cell
+    // b) make an Array of all cell coordinates around it NOT YET UNCOVERED
+    // c) run uncoverBoard (recursively) for all cell coors in that ^^ Array
+      // recursion base case is built-in rule 1)
+  function uncoverCell(r, c) {
+    board[r][c].isCovered = false;
+  }
 }
 
 export {
