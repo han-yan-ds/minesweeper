@@ -26,8 +26,10 @@ class Emoji extends Component {
       switch (this.props.gameState) {
         case 1:
           iconClass = 'far fa-grin-stars';
+          break;
         case -1:
           iconClass = 'far fa-dizzy';
+          break;
         default:
           iconClass = 'far fa-smile';
       }

@@ -7,7 +7,6 @@
 // array of arrays with cell values
 
 // Board can have state:
-//
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import Cell from './Cell.jsx';
