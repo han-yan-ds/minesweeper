@@ -1,5 +1,19 @@
 const MINEVALUE = 9; // CANNOT BE numbers 0 - 8
 
+function cloneBoard(board) {
+  let newBoard = new Array(board.length);
+  for (let row = 0; row < board.length; row++) {
+    newBoard[row] = new Array(board[0].length);
+    for (let col = 0; col < board[0].length; col++) {
+      newBoard[row][col] = {
+        isCovered: board[row][col].isCovered,
+        value: board[row][col].value,
+      }
+    }
+  }
+  return newBoard;
+}
+
 function populateMines (boardArr, numMines) {
   // populate an empty board with mines
   while (numMines > 0) {
@@ -47,54 +61,57 @@ function populateMarkers (minedBoardArr) {
   return minedBoardArr;
 }
 
-function uncoverBoard (board, row, col) {
+function uncoverBoard (board, row, col, doCloneBoard = true) {
   // given a board, row#, and, col#, uncovers the rest of the board
   // to uncover: set board[x][y].isCovered = false
   function uncoverCell(r, c) {
     board[r][c].isCovered = false;
   }
-
   // 0) if the selected cell is already uncovered, RETURN NULL
   if (!board[row][col].isCovered) {
     return board;
-  }
-  // otherwise, create new board (COPY BOARD... set to newBoard) <--- not sure if this is required
-  // 1) if the selected cell is from 1-8... uncover just this cell
-  else if (board[row][col].value >= 1 && board[row][col].value <= 8) {
-    uncoverCell(row, col);
-  }
-  // 2) if the selected cell is a 9 (mine)... uncover all mines and lose the game
-  else if (board[row][col].value === MINEVALUE) {
-    board.forEach((eachRow, rIndex) => {
-      eachRow.forEach((eachCell, cIndex) => {
-        if (eachCell.value === MINEVALUE) {
-          uncoverCell(rIndex, cIndex);
-        }
-      })
-    })
-    // SET STATE TO LOSE THE GAME
-  }
-  // 3) if the selected cell is a 0 (empty)...
-  else {
-    function uncoverNeighbor (r, c) {
-      try {
-        uncoverBoard(board, r, c); // run uncoverBoard recursively
-      } catch (err) {}
+  } else {
+    // otherwise, clone board
+    if (doCloneBoard) {
+      board = cloneBoard(board);
     }
-    // a) uncover this cell
-    uncoverCell(row, col);
-    // c) run uncoverBoard (recursively) for all cell coors adjacent (if it runs into a number 1-8, it just uncovers that one)
-      // recursion base case is built-in rule 1)
-    uncoverNeighbor(row-1, col+1);
-    uncoverNeighbor(row-1, col);
-    uncoverNeighbor(row-1, col-1);
-    uncoverNeighbor(row, col+1);
-    uncoverNeighbor(row, col-1);
-    uncoverNeighbor(row+1, col+1);
-    uncoverNeighbor(row+1, col);
-    uncoverNeighbor(row+1, col-1);
+    // 1) if the selected cell is from 1-8... uncover just this cell
+    if (board[row][col].value >= 1 && board[row][col].value <= 8) {
+      uncoverCell(row, col);
+    }
+    // 2) if the selected cell is a 9 (mine)... uncover all mines and lose the game
+    else if (board[row][col].value === MINEVALUE) {
+      board.forEach((eachRow, rIndex) => {
+        eachRow.forEach((eachCell, cIndex) => {
+          if (eachCell.value === MINEVALUE) {
+            uncoverCell(rIndex, cIndex);
+          }
+        })
+      })
+      // SET STATE TO LOSE THE GAME
+    }
+    // 3) if the selected cell is a 0 (empty)...
+    else {
+      function uncoverNeighbor (r, c) {
+        try {
+          uncoverBoard(board, r, c, false); // run uncoverBoard recursively
+        } catch (err) {}
+      }
+      // a) uncover this cell
+      uncoverCell(row, col);
+      // c) run uncoverBoard (recursively) for all cell coors adjacent (if it runs into a number 1-8, it just uncovers that one)
+        // recursion base case is built-in rule 1)
+      uncoverNeighbor(row-1, col+1);
+      uncoverNeighbor(row-1, col);
+      uncoverNeighbor(row-1, col-1);
+      uncoverNeighbor(row, col+1);
+      uncoverNeighbor(row, col-1);
+      uncoverNeighbor(row+1, col+1);
+      uncoverNeighbor(row+1, col);
+      uncoverNeighbor(row+1, col-1);
+    }
+    return board;
   }
-  return board;
 }
 
 export {
