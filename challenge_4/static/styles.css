@@ -11,6 +11,10 @@ button {
   font-weight: bolder;
 }
 
+.exposed{
+  background-color: red;
+}
+
 .val-1 {
   color: green;
 }

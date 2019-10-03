@@ -10,13 +10,20 @@
 import {connect} from 'react-redux';
 import {uncoverCellAction} from '../../redux/actions/actions';
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
+  const {boardArr} = state;
   return {
-    uncoverCell: (row, col) => dispatch(uncoverCellAction(row, col)),
+    boardArr,
   }
 }
 
-function Cell ({isCovered, value, rowIndex, colIndex, uncoverCell}) {
+function mapDispatchToProps(dispatch) {
+  return {
+    uncoverCell: (board, row, col) => dispatch(uncoverCellAction(board, row, col)),
+  }
+}
+
+function Cell ({isCovered, value, rowIndex, colIndex, boardArr, uncoverCell}) {
   let cellValue = (value > 0 && value < 9) ? value : ((value === 0) ? '' : 'X');
   let displayedValue = (isCovered) ? '' : cellValue;
   let isCoveredClass = (isCovered) ? 'covered' : 'exposed';
@@ -25,12 +32,13 @@ function Cell ({isCovered, value, rowIndex, colIndex, uncoverCell}) {
       className={`${isCoveredClass} val-${cellValue}`}
       onClick={(e) => {
         e.preventDefault();
-        uncoverCell(rowIndex, colIndex);
+        uncoverCell(boardArr, rowIndex, colIndex);
       }}
     >
-      &nbsp;{displayedValue}&nbsp;
+      {/* &nbsp;{displayedValue}&nbsp; */}
+      &nbsp;{cellValue}&nbsp;
     </button>
   )
 }
 
-export default connect(null, mapDispatchToProps)(Cell);
+export default connect(mapStateToProps, mapDispatchToProps)(Cell);
