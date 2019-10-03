@@ -8,6 +8,7 @@ let myBoard = boardInitializer(10, 10, 10);
 
 const initialData = {
   boardArr: myBoard,
+  gameState: 0,
 };
 
 export default function configureStore () {

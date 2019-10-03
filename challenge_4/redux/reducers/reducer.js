@@ -7,6 +7,18 @@ function boardArr (board = [[0]], action) {
   }
 }
 
+function gameState (gameSt = 0, action) {
+  switch (action.type) {
+    case 'WIN_GAME':
+      return 1;
+    case 'LOSE_GAME':
+      return -1;
+    default:
+      return gameSt;
+  }
+}
+
 export {
-  boardArr
+  boardArr,
+  gameState,
 }
