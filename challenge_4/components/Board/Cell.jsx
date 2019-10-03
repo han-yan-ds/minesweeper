@@ -8,7 +8,11 @@
 // isCovered (true or false)
 //    if covered, it's clickable too
 import {connect} from 'react-redux';
-import {uncoverCellAction, winGameAction, loseGameAction} from '../../redux/actions/actions';
+import {
+  uncoverCellAction, 
+  winGameAction, 
+  loseGameAction
+} from '../../redux/actions/actions';
 
 function mapStateToProps(state) {
   const {boardArr} = state;

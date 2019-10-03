@@ -6,20 +6,39 @@ function mapStateToProps(state) {
   return {gameState}
 }
 
-function Emoji({gameState}) {
-  let iconClass;
-  switch (gameState) {
-    case 1:
-      iconClass = 'far fa-grin-stars';
-    case -1:
-      iconClass = 'far fa-dizzy';
-    default:
-      iconClass = 'far fa-smile';
+class Emoji extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      emojiDidMount: false,
+    }
   }
-  return <div id="emoji">
-    <p>{iconClass}</p>
-    <i className={iconClass}></i>
-  </div>
+
+  componentDidMount() {
+    this.setState({
+      emojiDidMount: true,
+    })
+  }
+
+  render() {
+    if (this.state.emojiDidMount) {
+      let iconClass;
+      switch (this.props.gameState) {
+        case 1:
+          iconClass = 'far fa-grin-stars';
+        case -1:
+          iconClass = 'far fa-dizzy';
+        default:
+          iconClass = 'far fa-smile';
+      }
+      return <div id="emoji">
+        <p>{iconClass}</p>
+        <i className={iconClass}></i>
+      </div>
+    } else {
+      return null;
+    }
+  }
 }
 
 export default connect(mapStateToProps, null)(Emoji);
