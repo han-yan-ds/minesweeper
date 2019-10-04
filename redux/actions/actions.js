@@ -2,8 +2,9 @@
 
 import {uncoverBoard, flagCell} from '../../util/boardUtilities';
 import boardInitializer from '../../util/boardInitializer';
+import defaultParams from '../../util/defaultBoardParams';
 
-function newGameAction (width = 10, height = 10, numMines = 15) {
+function newGameAction (width = defaultParams.width, height = defaultParams.height, numMines = defaultParams.numMines) {
   return {
     type: 'NEW_GAME',
     board: boardInitializer(width, height, numMines),
