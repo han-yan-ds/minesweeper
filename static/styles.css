@@ -29,6 +29,10 @@ button {
   cursor: not-allowed;
 }
 
+.flagged {
+  color: black !important;
+}
+
 .val-1 {
   color: green;
 }
