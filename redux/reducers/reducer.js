@@ -24,7 +24,17 @@ function gameState (gameSt = 0, action) {
   }
 }
 
+function numMines (num = 15, action) {
+  switch (action.type) {
+    case 'NEW_GAME':
+      return action.numMines;
+    default:
+      return num;
+  }
+}
+
 export {
   boardArr,
   gameState,
+  numMines,
 }

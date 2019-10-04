@@ -7,6 +7,7 @@ function newGameAction (width = 10, height = 10, numMines = 15) {
   return {
     type: 'NEW_GAME',
     board: boardInitializer(width, height, numMines),
+    numMines,
   }
 }
 

@@ -8,6 +8,7 @@ let myBoard = boardInitializer(10, 10, 15);
 
 const initialData = {
   boardArr: myBoard,
+  numMines: 15,
   gameState: 0,
 };
 
