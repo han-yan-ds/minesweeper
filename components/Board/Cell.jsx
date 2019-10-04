@@ -37,9 +37,11 @@ function Cell ({isCovered, value, isFlagged, rowIndex, colIndex,
   let displayedValue = (!isCovered) ? cellValue : ((isFlagged) ? 'F' : '');
   let isCoveredClass = (isCovered) ? 'covered' : (value === 9) ? 'exposed-mine' : 'exposed-safe';
   let disabledClass = (gameState === 0 && !isFlagged) ? '' : 'disabled-button';
+  let flaggedClass = (isFlagged && isCovered) ? 'flagged' : '';
+  // let disabledClass = (gameState === 0) ? '' : 'disabled-button';
   return (
     <button
-      className={`${isCoveredClass} val-${cellValue} ${disabledClass}`}
+      className={`${isCoveredClass} val-${cellValue} ${disabledClass} ${flaggedClass}`}
       onMouseDown={(e) => {
         e.preventDefault();
         if (e.button === 0) { // left click
