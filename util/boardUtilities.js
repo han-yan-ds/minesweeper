@@ -152,19 +152,9 @@ function toggleFlag(cell) {
   }
 }
 
-function flagCell (board, row, col, isFromClick=true) {
-  // if isFromClick is set true,
-  // 1) this function will flag and unflag
-  // 2) this function will clone the board right away
-  // if isFromClick is set false, that means this is flagged by winning:
-  // this function will only flag (and leave already flagged alone)
-  // this function will NOT clone the board because the function to flag every mine will clone the board
-  if (isFromClick) {
-    board = cloneBoard(board);
-    toggleFlag(board[row][col]);
-  } else {
-    board[row][col].isFlagged = 2;
-  }
+function flagCell (board, row, col) {
+  board = cloneBoard(board);
+  toggleFlag(board[row][col]);
   return board;
 }
 
