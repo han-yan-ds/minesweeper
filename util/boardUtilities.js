@@ -74,7 +74,7 @@ function countRemainingSafe (playedBoard) {
   return counter;
 }
 
-function uncoverBoard (board, row, col, winCb, loseCb, recursiveMode = false) {
+function uncoverBoard (board, row, col, winCb, loseCb, updateRemainingCb, recursiveMode = false) {
   // given a board, row#, and, col#, uncovers the rest of the board
   // to uncover: set board[x][y].isCovered = false
   function uncoverCell(r, c) {
@@ -107,7 +107,7 @@ function uncoverBoard (board, row, col, winCb, loseCb, recursiveMode = false) {
     else {
       function uncoverNeighbor (r, c) {
         try {
-          uncoverBoard(board, r, c, winCb, loseCb, true); // run uncoverBoard recursively
+          uncoverBoard(board, r, c, winCb, loseCb, updateRemainingCb, true); // run uncoverBoard recursively
         } catch (err) {}
       }
       // a) uncover this cell
@@ -124,8 +124,12 @@ function uncoverBoard (board, row, col, winCb, loseCb, recursiveMode = false) {
       uncoverNeighbor(row+1, col-1);
     }
     // finally, check if the game is won:
-    if (countRemainingSafe(board) === 0 && !recursiveMode) {
-      winCb();
+    if (!recursiveMode) {
+      let remainingSafe = countRemainingSafe(board);
+      updateRemainingCb(remainingSafe);
+      if (remainingSafe === 0) {
+        winCb();
+      }
     }
     return board;
   }
@@ -146,10 +150,6 @@ function flagCell (board, row, col, isFromClick=true) {
   }
   return board;
 }
-
-// function flagAllMines (board) {
-
-// }
 
 export {
   populateMines,

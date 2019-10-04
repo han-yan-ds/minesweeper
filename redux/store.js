@@ -3,11 +3,14 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import boardInitializer from '../util/boardInitializer';
+import defaultParams from '../util/defaultBoardParams';
 
-let myBoard = boardInitializer(10, 10, 10);
+let myBoard = boardInitializer(defaultParams.width, defaultParams.height, defaultParams.numMines);
 
 const initialData = {
   boardArr: myBoard,
+  numMines: defaultParams.numMines,
+  remainingSafe: defaultParams.width * defaultParams.height - defaultParams.numMines,
   gameState: 0,
 };
 

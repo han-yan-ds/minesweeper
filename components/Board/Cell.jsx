@@ -10,6 +10,7 @@
 import {connect} from 'react-redux';
 import {
   uncoverCellAction,
+  updateRemainingSafeAction,
   flagCellAction,
   winGameAction,
   loseGameAction
@@ -32,9 +33,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    uncoverCell: (board, row, col, winCb, loseCb) => {
-      dispatch(uncoverCellAction(board, row, col, winCb, loseCb))
+    uncoverCell: (board, row, col, winCb, loseCb, updateRemainingCb) => {
+      dispatch(uncoverCellAction(board, row, col, winCb, loseCb, updateRemainingCb))
     },
+    updateRemainingSafe: (remainingSafe) => dispatch(updateRemainingSafeAction(remainingSafe)),
     flagCell: (board, row, col) => dispatch(flagCellAction(board, row, col)),
     winGame: () => dispatch(winGameAction()),
     loseGame: () => dispatch(loseGameAction()),
@@ -43,7 +45,7 @@ function mapDispatchToProps(dispatch) {
 
 function Cell ({isCovered, value, isFlagged, rowIndex, colIndex,
   boardArr, gameState,
-  uncoverCell, flagCell, winGame, loseGame}) {
+  uncoverCell, updateRemainingSafe, flagCell, winGame, loseGame}) {
   let cellValue = helperSetCellValue(value);
   let displayedValue = helperDisplayedValue(isCovered, isFlagged, cellValue, gameState);
   let isCoveredClass = helperCoveredClass(isCovered, cellValue);
@@ -51,11 +53,12 @@ function Cell ({isCovered, value, isFlagged, rowIndex, colIndex,
   let flaggedClass = helperFlaggedClass(isFlagged, isCovered);
   return (
     <button
-    onContextMenu={(e) => e.preventDefault()} className={`${isCoveredClass} val-${cellValue} ${disabledClass} ${flaggedClass}`}
+    onContextMenu={(e) => e.preventDefault()}
+    className={`cell ${isCoveredClass} val-${cellValue} ${disabledClass} ${flaggedClass}`}
       onMouseDown={(e) => {
         e.preventDefault();
         if (e.button === 0 && !isFlagged) { // left click
-          uncoverCell(boardArr, rowIndex, colIndex, winGame, loseGame);
+          uncoverCell(boardArr, rowIndex, colIndex, winGame, loseGame, updateRemainingSafe);
         } else if (e.button !== 0) { // right click
           flagCell(boardArr, rowIndex, colIndex);
         }

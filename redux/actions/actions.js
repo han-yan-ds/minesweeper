@@ -1,11 +1,28 @@
 // IMPORT code logic that uncovers the rest of the cells around it if empty
 
 import {uncoverBoard, flagCell} from '../../util/boardUtilities';
+import boardInitializer from '../../util/boardInitializer';
 
-function uncoverCellAction(board, row, col, winCb, loseCb) {
+function newGameAction (width = 10, height = 10, numMines = 15) {
+  return {
+    type: 'NEW_GAME',
+    board: boardInitializer(width, height, numMines),
+    numMines,
+    remainingSafe: width * height - numMines,
+  }
+}
+
+function updateRemainingSafeAction (remainingSafe) {
+  return {
+    type: 'UPDATE_REMAINING_SAFE',
+    remainingSafe,
+  }
+}
+
+function uncoverCellAction(board, row, col, winCb, loseCb, updateRemainingCb) {
   return {
     type: 'UNCOVER_CELL',
-    board: uncoverBoard(board, row, col, winCb, loseCb),
+    board: uncoverBoard(board, row, col, winCb, loseCb, updateRemainingCb),
   }
 }
 
@@ -29,6 +46,8 @@ function loseGameAction() {
 }
 
 export {
+  newGameAction,
+  updateRemainingSafeAction,
   uncoverCellAction,
   flagCellAction,
   winGameAction,

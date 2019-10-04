@@ -2,7 +2,7 @@ import {populateMines, populateMarkers} from './boardUtilities';
 
 function boardInitializer (width, height, numMines) {
   // limit num mines to 15% of total board size
-  numMines = Math.min(numMines, width * height);
+  numMines = Math.min(numMines, width * height * 0.20);
   // create array of arrays to represent board
   let board = new Array(height);
   for (let row = 0; row < height; row++) {
