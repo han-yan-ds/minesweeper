@@ -14,14 +14,14 @@
 }
 
 #win-face {
-  color: green;
+  color: lightgreen;
 }
 
 #lose-face {
   color: red;
 }
 
-button {
+.cell {
   height: 30px;
   width: 30px;
   padding: 0;

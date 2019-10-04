@@ -4,7 +4,7 @@ import rootReducer from './reducers/rootReducer';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import boardInitializer from '../util/boardInitializer';
 
-let myBoard = boardInitializer(10, 10, 10);
+let myBoard = boardInitializer(10, 10, 15);
 
 const initialData = {
   boardArr: myBoard,

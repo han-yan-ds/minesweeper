@@ -51,7 +51,8 @@ function Cell ({isCovered, value, isFlagged, rowIndex, colIndex,
   let flaggedClass = helperFlaggedClass(isFlagged, isCovered);
   return (
     <button
-    onContextMenu={(e) => e.preventDefault()} className={`${isCoveredClass} val-${cellValue} ${disabledClass} ${flaggedClass}`}
+    onContextMenu={(e) => e.preventDefault()}
+    className={`cell ${isCoveredClass} val-${cellValue} ${disabledClass} ${flaggedClass}`}
       onMouseDown={(e) => {
         e.preventDefault();
         if (e.button === 0 && !isFlagged) { // left click
