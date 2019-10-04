@@ -1,7 +1,7 @@
 const defaultParams = {
   width: 10,
   height: 10,
-  numMines: 5,
+  numMines: 10,
 }
 
 export default defaultParams;
