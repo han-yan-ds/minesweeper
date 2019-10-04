@@ -1,5 +1,6 @@
 const MINEDISPLAY = 'X';
 const FLAGDISPLAY = 'F';
+const CAUTIONDISPLAY = '?';
 
 function helperSetCellValue (value) {
   if (value > 0 && value < 9) { // if adjacent to a mine, show the number
@@ -14,10 +15,10 @@ function helperSetCellValue (value) {
 function helperDisplayedValue (isCovered, isFlagged, cellValue, gameState) {
   if (!isCovered) { // if cell is exposed, show cell Value
     return cellValue;
-  } else if (isFlagged) { // if cell is covered but Flagged, show F
-    return FLAGDISPLAY;
   } else if (gameState === 1 && isCovered) { // if game is won, show F for covered cells (mines)
     return FLAGDISPLAY;
+  } else if (isFlagged) { // if cell is covered but Flagged, show F or ? depending on flag
+    return (isFlagged === 0.5) ? CAUTIONDISPLAY : FLAGDISPLAY;
   } else { // if cell is covered and not Flagged, show empty
     return '';
   }
