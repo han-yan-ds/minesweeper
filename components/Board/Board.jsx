@@ -42,6 +42,7 @@ class Board extends Component {
                 colIndex={colIndex}
                 isCovered={cell.isCovered}
                 value={cell.value}
+                isFlagged={cell.isFlagged}
               />
             })}</div>
           })}
@@ -51,7 +52,7 @@ class Board extends Component {
       return null;
     }
   }
-  
+
 }
 
 export default connect(mapStateToProps, null)(Board);

@@ -10,7 +10,8 @@ function boardInitializer (width, height, numMines) {
     for (let col = 0; col < width; col++) {
       board[row][col] = {
         isCovered: true,
-        value: 0
+        value: 0,
+        isFlagged: false,
       }
     }
   }
