@@ -135,6 +135,23 @@ function uncoverBoard (board, row, col, winCb, loseCb, updateRemainingCb, recurs
   }
 }
 
+function toggleFlag(cell) {
+  // 0: no flag
+  // 1: is flagged
+  // 0.5: half flagged (caution instead of THIS IS A MINE)
+  switch (cell.isFlagged) {
+    case 0.5:
+      cell.isFlagged = 0;
+      break;
+    case 1:
+      cell.isFlagged = 0.5;
+      break;
+    default: // 0
+      cell.isFlagged = 1;
+      break;
+  }
+}
+
 function flagCell (board, row, col, isFromClick=true) {
   // if isFromClick is set true,
   // 1) this function will flag and unflag
@@ -144,9 +161,9 @@ function flagCell (board, row, col, isFromClick=true) {
   // this function will NOT clone the board because the function to flag every mine will clone the board
   if (isFromClick) {
     board = cloneBoard(board);
-    board[row][col].isFlagged = !board[row][col].isFlagged;
+    toggleFlag(board[row][col]);
   } else {
-    board[row][col].isFlagged = true;
+    board[row][col].isFlagged = 2;
   }
   return board;
 }

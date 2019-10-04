@@ -11,7 +11,7 @@ function boardInitializer (width, height, numMines) {
       board[row][col] = {
         isCovered: true,
         value: 0,
-        isFlagged: false,
+        isFlagged: 0,
       }
     }
   }
