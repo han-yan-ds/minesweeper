@@ -34,8 +34,8 @@ class Emoji extends Component {
           iconClass = 'far fa-smile';
       }
       return <div id="emoji">
-        <p>{iconClass}</p>
-        <i className={iconClass}></i>
+        {/* <p>{iconClass}</p> */}
+        <i className={`${iconClass} fa-6x`}></i>
       </div>
     } else {
       return null;
