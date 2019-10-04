@@ -47,9 +47,19 @@ function remainingSafe (num = defaultParams.width * defaultParams.height - defau
   }
 }
 
+function currentView (view = 'play', action) {
+  switch (action.type) {
+    case 'SWITCH_SCREEN':
+      return action.currentView;
+    default:
+      return view;
+  }
+}
+
 export {
   boardArr,
   gameState,
   numMines,
   remainingSafe,
+  currentView,
 }

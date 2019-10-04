@@ -46,6 +46,13 @@ function loseGameAction() {
   }
 }
 
+function switchViewAction(currentView) {
+  return {
+    type: 'SWITCH_SCREEN',
+    currentView: (currentView === 'play') ? 'help' : 'play',
+  }
+}
+
 export {
   newGameAction,
   updateRemainingSafeAction,
@@ -53,4 +60,5 @@ export {
   flagCellAction,
   winGameAction,
   loseGameAction,
+  switchViewAction,
 }
