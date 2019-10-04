@@ -22,20 +22,24 @@ class Emoji extends Component {
 
   render() {
     if (this.state.emojiDidMount) {
-      let iconClass;
+      let icon, iconId;
       switch (this.props.gameState) {
         case 1:
-          iconClass = 'far fa-grin-stars';
+          icon = 'sentiment_very_satisfied';
+          iconId = 'win-face';
           break;
         case -1:
-          iconClass = 'far fa-dizzy';
+          icon = 'mood_bad';
+          iconId = 'lose-face';
           break;
         default:
-          iconClass = 'far fa-smile';
+          icon = 'sentiment_satisfied';
+          iconId = '';
       }
       return <div id="emoji">
-        {/* <p>{iconClass}</p> */}
-        <i className={`${iconClass} fa-6x`}></i>
+        <i className="material-icons" id={iconId}>
+          {icon}
+        </i>
       </div>
     } else {
       return null;

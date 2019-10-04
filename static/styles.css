@@ -9,6 +9,18 @@
   height: 100px;
 }
 
+.material-icons {
+  font-size: 6em;
+}
+
+#win-face {
+  color: green;
+}
+
+#lose-face {
+  color: red;
+}
+
 button {
   height: 30px;
   width: 30px;

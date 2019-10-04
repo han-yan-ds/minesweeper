@@ -8,7 +8,8 @@ function Index () {
     <div>
       <Head>
         <title>Minesweeper</title>
-        <script src="https://kit.fontawesome.com/661f7c70a6.js" ></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"></link>
         <link href="/static/styles.css" rel="stylesheet" />
       </Head>
       <Provider store={configureStore()}>
