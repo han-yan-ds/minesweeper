@@ -45,7 +45,7 @@ function Cell ({isCovered, value, isFlagged, rowIndex, colIndex,
   boardArr, gameState,
   uncoverCell, flagCell, winGame, loseGame}) {
   let cellValue = helperSetCellValue(value);
-  let displayedValue = helperDisplayedValue(isCovered, isFlagged, cellValue);
+  let displayedValue = helperDisplayedValue(isCovered, isFlagged, cellValue, gameState);
   let isCoveredClass = helperCoveredClass(isCovered, cellValue);
   let disabledClass = helperDisabledClass(gameState);
   let flaggedClass = helperFlaggedClass(isFlagged, isCovered);

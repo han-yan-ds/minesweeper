@@ -11,10 +11,12 @@ function helperSetCellValue (value) {
   }
 }
 
-function helperDisplayedValue (isCovered, isFlagged, cellValue) {
+function helperDisplayedValue (isCovered, isFlagged, cellValue, gameState) {
   if (!isCovered) { // if cell is exposed, show cell Value
     return cellValue;
   } else if (isFlagged) { // if cell is covered but Flagged, show F
+    return FLAGDISPLAY;
+  } else if (gameState === 1 && isCovered) { // if game is won, show F for covered cells (mines)
     return FLAGDISPLAY;
   } else { // if cell is covered and not Flagged, show empty
     return '';
