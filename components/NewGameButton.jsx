@@ -9,9 +9,9 @@ function mapDispatchToProps (dispatch) {
 }
 
 function NewGameButton ({newGame}) {
-  let width = 15;
-  let height = 15;
-  let numMines = 35;
+  let width = 10;
+  let height = 10;
+  let numMines = 10;
   return (
     <button onClick={() => newGame(width, height, numMines)}>NEW GAME</button>
   );

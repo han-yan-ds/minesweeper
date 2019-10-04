@@ -1,3 +1,6 @@
+// import {defaultWidth, defaultHeight, defaultNumMines} from '../../util/defaultBoardParams';
+import defaultParams from '../../util/defaultBoardParams';
+
 function boardArr (board = [[0]], action) {
   switch (action.type) {
     case 'UNCOVER_CELL':
@@ -24,10 +27,21 @@ function gameState (gameSt = 0, action) {
   }
 }
 
-function numMines (num = 15, action) {
+function numMines (num = defaultParams.numMines, action) {
   switch (action.type) {
     case 'NEW_GAME':
       return action.numMines;
+    default:
+      return num;
+  }
+}
+
+function remainingSafe (num = defaultParams.width * defaultParams.height - defaultParams.numMines, action) {
+  switch (action.type) {
+    case 'NEW_GAME':
+      return action.remainingSafe;
+    case 'UPDATE_REMAINING_SAFE':
+      return action.remainingSafe;
     default:
       return num;
   }
@@ -37,4 +51,5 @@ export {
   boardArr,
   gameState,
   numMines,
+  remainingSafe,
 }

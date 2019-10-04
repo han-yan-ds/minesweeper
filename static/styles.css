@@ -45,6 +45,23 @@
   color: black !important;
 }
 
+#info-box {
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  text-transform: uppercase;
+  vertical-align: center;
+}
+
+#info-box > div {
+  padding: 20px 30px;
+}
+
+#info-box > div > span {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
 .val-1 {
   color: green;
 }
