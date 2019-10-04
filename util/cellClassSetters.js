@@ -27,9 +27,9 @@ function helperCoveredClass (isCovered, cellValue) {
   if (isCovered) { // if covered, className "covered"
     return 'covered';
   } else if (cellValue === MINEDISPLAY) { // if exposed & a mine, className "exposed-mine"
-    return 'exposed-mine';
+    return 'exposed-mine disabled-button';
   } else { // if exposed & not a mine, className "exposed-safe"
-    return 'exposed-safe';
+    return 'exposed-safe disabled-button';
   }
 }
 
