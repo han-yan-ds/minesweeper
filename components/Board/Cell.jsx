@@ -8,8 +8,19 @@
 // isCovered (true or false)
 //    if covered, it's clickable too
 import {connect} from 'react-redux';
-import {uncoverCellAction, flagCellAction,
-  winGameAction, loseGameAction} from '../../redux/actions/actions';
+import {
+  uncoverCellAction,
+  flagCellAction,
+  winGameAction,
+  loseGameAction
+} from '../../redux/actions/actions';
+import {
+  helperSetCellValue,
+  helperDisplayedValue,
+  helperCoveredClass,
+  helperDisabledClass,
+  helperFlaggedClass
+} from '../../util/cellClassSetters';
 
 function mapStateToProps(state) {
   const {boardArr, gameState} = state;
@@ -33,20 +44,19 @@ function mapDispatchToProps(dispatch) {
 function Cell ({isCovered, value, isFlagged, rowIndex, colIndex,
   boardArr, gameState,
   uncoverCell, flagCell, winGame, loseGame}) {
-  let cellValue = (value > 0 && value < 9) ? value : ((value === 0) ? '' : 'X');
-  let displayedValue = (!isCovered) ? cellValue : ((isFlagged) ? 'F' : '');
-  let isCoveredClass = (isCovered) ? 'covered' : (value === 9) ? 'exposed-mine' : 'exposed-safe';
-  let disabledClass = (gameState === 0 && !isFlagged) ? '' : 'disabled-button';
-  let flaggedClass = (isFlagged && isCovered) ? 'flagged' : '';
-  // let disabledClass = (gameState === 0) ? '' : 'disabled-button';
+  let cellValue = helperSetCellValue(value);
+  let displayedValue = helperDisplayedValue(isCovered, isFlagged, cellValue);
+  let isCoveredClass = helperCoveredClass(isCovered, cellValue);
+  let disabledClass = helperDisabledClass(gameState);
+  let flaggedClass = helperFlaggedClass(isFlagged, isCovered);
   return (
     <button
       className={`${isCoveredClass} val-${cellValue} ${disabledClass} ${flaggedClass}`}
       onMouseDown={(e) => {
         e.preventDefault();
-        if (e.button === 0) { // left click
+        if (e.button === 0 && !isFlagged) { // left click
           uncoverCell(boardArr, rowIndex, colIndex, winGame, loseGame);
-        } else { // right click
+        } else if (e.button !== 0) { // right click
           flagCell(boardArr, rowIndex, colIndex);
         }
       }}
