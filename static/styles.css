@@ -1,5 +1,19 @@
 .hide {
-  display: none;
+  display: none !important;
+}
+
+#help-section {
+  display: flex;
+  justify-content: center;
+}
+
+#help-text {
+  width: 35%;
+  text-align: justify;
+}
+
+#help-text > h3, h4 {
+  text-align: center;
 }
 
 #container {

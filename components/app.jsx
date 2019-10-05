@@ -20,7 +20,7 @@ function App ({currentView}) {
         <InfoView/>
         <NewGameButton/>
       </div>
-      <div className={help}>
+      <div className={help} id="help-section">
         <Help/>
       </div>
     </div>
