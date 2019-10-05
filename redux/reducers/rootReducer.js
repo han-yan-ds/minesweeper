@@ -1,6 +1,12 @@
 import {combineReducers} from 'redux';
 // import other reducers
-import {boardArr, gameState, numMines, remainingSafe} from './reducer';
+import {
+  boardArr,
+  gameState,
+  numMines,
+  remainingSafe,
+  currentView,
+} from './reducer';
 
 export default combineReducers({
   // other reducers
@@ -8,4 +14,5 @@ export default combineReducers({
   numMines,
   gameState,
   remainingSafe,
+  currentView,
 });

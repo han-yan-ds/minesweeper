@@ -12,6 +12,7 @@ const initialData = {
   numMines: defaultParams.numMines,
   remainingSafe: defaultParams.width * defaultParams.height - defaultParams.numMines,
   gameState: 0,
+  currentView: 'play',
 };
 
 export default function configureStore () {
