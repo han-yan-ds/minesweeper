@@ -9,6 +9,7 @@
 
 #help-text {
   width: 35%;
+  min-width: 550px !important;
   text-align: justify;
 }
 
@@ -23,12 +24,13 @@
 }
 
 #emoji {
+  margin-top: 5vh;
   color: black;
   height: 100px;
 }
 
 #emoji-button {
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
 .material-icons {
