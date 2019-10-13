@@ -1,6 +1,7 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import boardInitializer from '../util/boardInitializer';
+import difficulties from '../util/difficulties';
 import {newGameAction} from '../redux/actions/actions';
 
 function mapDispatchToProps (dispatch) {
@@ -18,12 +19,6 @@ class NewGameButton extends Component {
   }
 
   render() {
-    let difficulties = [
-      {width: 10, height: 10, numMines: 10},
-      {width: 15, height: 15, numMines: 27},
-      {width: 20, height: 20, numMines: 55},
-      {width: 25, height: 25, numMines: 100},
-    ];
     let context = this;
     return (
       <form>
