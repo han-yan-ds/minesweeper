@@ -14,13 +14,12 @@
 }
 
 #container {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  min-width: 850px;
-  /* text-align: center; */
+  min-width: 750px;
 }
 
-@media (min-width: 850px) {
+@media (min-width: 750px) {
   #container {
     text-align: center;
   }

@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "dev": "next",
+    "start": "next start",
     "build": "next build",
-    "start": "next start"
+    "play": "next build && next start"
   },
   "keywords": [],
   "author": "",
