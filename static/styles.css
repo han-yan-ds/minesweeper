@@ -13,20 +13,31 @@
   text-align: justify;
 }
 
-#help-text > h3, h4 {
-  text-align: center;
-}
-
 #container {
   height: 100vh;
   width: 100vw;
-  text-align: center;
+  min-width: 850px;
+  /* text-align: center; */
+}
+
+@media (min-width: 850px) {
+  #container {
+    text-align: center;
+  }
+  #help-text > h3, h4 {
+    text-align: center;
+  }
+  #info-box {
+    justify-content: center;
+  }
 }
 
 #emoji {
   margin-top: 5vh;
   color: black;
   height: 100px;
+  width: 100vw;
+  text-align: center;
 }
 
 #emoji-button {
@@ -72,7 +83,6 @@
 #info-box {
   display: flex;
   flex-flow: nowrap;
-  justify-content: center;
   text-transform: uppercase;
   vertical-align: center;
 }
