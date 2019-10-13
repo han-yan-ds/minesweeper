@@ -18,9 +18,9 @@ Here's a great tutorial: https://docs.npmjs.com/downloading-and-installing-node-
 
 ### `$ npm install -g next`
 
-* Run Start script
+* Run Play script
 
-### `npm start`
+### `npm run play`
 
 Runs the app in the build mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
