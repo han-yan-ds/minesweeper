@@ -158,9 +158,22 @@ function flagCell (board, row, col) {
   return board;
 }
 
+function countFlagged (board) {
+  return board.reduce((accumRow, row) => {
+    accumRow += row.reduce((accumFlags, cell) => {
+      if (cell.isCovered && cell.isFlagged === 1) {
+        accumFlags ++;
+      }
+      return accumFlags;
+    }, 0);
+    return accumRow;
+  }, 0)
+}
+
 export {
   populateMines,
   populateMarkers,
   uncoverBoard,
   flagCell,
+  countFlagged,
 }

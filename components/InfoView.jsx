@@ -1,23 +1,30 @@
 import {connect} from 'react-redux';
 
 function mapStateToProps(state) {
-  const {numMines, remainingSafe} = state;
+  const {numMines, numFlagged, remainingSafe} = state;
   return {
     numMines,
+    numFlagged,
     remainingSafe,
   }
 }
 
-function InfoView({numMines, remainingSafe}) {
+function InfoView({numMines, numFlagged, remainingSafe}) {
   return (
-    <div id="info-box">
-      <div id="mine-counter">
+    <React.Fragment>
+      <br/>
+      <div id="mine-counter" className="info">
         # Mines:&nbsp;&nbsp;<span>{numMines}</span>
       </div>
-      <div id="remaining-safe-counter">
-        Safe Cells Left:&nbsp;&nbsp;<span>{remainingSafe}</span>
+      <div id="info-box">
+        <div id="remaining-mine-counter" className="info">
+          Mines To Flag:&nbsp;&nbsp;<span>{numMines - numFlagged}</span>
+        </div>
+        <div id="remaining-safe-counter" className="info">
+          Safe Cells Left:&nbsp;&nbsp;<span>{remainingSafe}</span>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

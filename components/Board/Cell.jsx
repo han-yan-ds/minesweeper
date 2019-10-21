@@ -12,6 +12,7 @@ import {
   uncoverCellAction,
   updateRemainingSafeAction,
   flagCellAction,
+  updateNumFlagsAction,
   winGameAction,
   loseGameAction
 } from '../../redux/actions/actions';
@@ -38,6 +39,7 @@ function mapDispatchToProps(dispatch) {
     },
     updateRemainingSafe: (remainingSafe) => dispatch(updateRemainingSafeAction(remainingSafe)),
     flagCell: (board, row, col) => dispatch(flagCellAction(board, row, col)),
+    updateNumFlags: (board) => dispatch(updateNumFlagsAction(board)),
     winGame: () => dispatch(winGameAction()),
     loseGame: () => dispatch(loseGameAction()),
   }
@@ -45,12 +47,13 @@ function mapDispatchToProps(dispatch) {
 
 function Cell ({isCovered, value, isFlagged, rowIndex, colIndex,
   boardArr, gameState,
-  uncoverCell, updateRemainingSafe, flagCell, winGame, loseGame}) {
+  uncoverCell, updateRemainingSafe, flagCell, updateNumFlags, winGame, loseGame}) {
   let cellValue = helperSetCellValue(value);
   let displayedValue = helperDisplayedValue(isCovered, isFlagged, cellValue, gameState);
   let isCoveredClass = helperCoveredClass(isCovered, cellValue);
   let disabledClass = helperDisabledClass(gameState);
   let flaggedClass = helperFlaggedClass(isFlagged, isCovered);
+  updateNumFlags(boardArr);
   return (
     <button
     onContextMenu={(e) => e.preventDefault()}

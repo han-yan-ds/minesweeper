@@ -4,6 +4,7 @@ import {
   boardArr,
   gameState,
   numMines,
+  numFlagged,
   remainingSafe,
   currentView,
 } from './reducer';
@@ -12,6 +13,7 @@ export default combineReducers({
   // other reducers
   boardArr,
   numMines,
+  numFlagged,
   gameState,
   remainingSafe,
   currentView,

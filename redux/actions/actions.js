@@ -1,6 +1,6 @@
 // IMPORT code logic that uncovers the rest of the cells around it if empty
 
-import {uncoverBoard, flagCell} from '../../util/boardUtilities';
+import {uncoverBoard, flagCell, countFlagged} from '../../util/boardUtilities';
 import boardInitializer from '../../util/boardInitializer';
 import defaultParams from '../../util/defaultBoardParams';
 
@@ -34,6 +34,13 @@ function flagCellAction(board, row, col) {
   }
 }
 
+function updateNumFlagsAction(board) {
+  return {
+    type: 'COUNT_FLAGS',
+    count: countFlagged(board),
+  }
+}
+
 function winGameAction() {
   return {
     type: 'WIN_GAME',
@@ -58,6 +65,7 @@ export {
   updateRemainingSafeAction,
   uncoverCellAction,
   flagCellAction,
+  updateNumFlagsAction,
   winGameAction,
   loseGameAction,
   switchViewAction,
