@@ -36,6 +36,15 @@ function numMines (num = defaultParams.numMines, action) {
   }
 }
 
+function numFlagged (num = 0, action) {
+  switch (action.type) {
+    case 'COUNT_FLAGS':
+      return action.count;
+    default:
+      return num;
+  }
+}
+
 function remainingSafe (num = defaultParams.width * defaultParams.height - defaultParams.numMines, action) {
   switch (action.type) {
     case 'NEW_GAME':
@@ -60,6 +69,7 @@ export {
   boardArr,
   gameState,
   numMines,
+  numFlagged,
   remainingSafe,
   currentView,
 }

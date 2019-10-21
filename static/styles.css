@@ -79,20 +79,28 @@
   color: black !important;
 }
 
+.info {
+  text-transform: uppercase;
+  vertical-align: center;
+}
+
+.info > span {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
 #info-box {
   display: flex;
   flex-flow: nowrap;
-  text-transform: uppercase;
-  vertical-align: center;
 }
 
 #info-box > div {
   padding: 20px 30px;
 }
 
-#info-box > div > span {
-  font-weight: bolder;
-  font-size: 1.5em;
+#mine-counter {
+  width: 100vw;
+  text-align: center;
 }
 
 .val-1 {
